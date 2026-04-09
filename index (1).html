@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtifexTech | Zainab Qazi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="progress-bar"></div>
+
+    <!-- ========== NAV ========== -->
+    <nav id="navbar">
+        <div class="nav-brand" onclick="goto('home')">
+            ARTIFEX<span class="accent">TECH</span>
+        </div>
+        <div class="nav-links">
+            <a onclick="goto('home')">Home</a>
+            <a onclick="goto('about')">About</a>
+            <a onclick="goto('contact')">Contact</a>
+            <a onclick="goto('write')" class="nav-write-btn">✍️ Write</a>
+            <button onclick="toggleTheme()" id="theme-btn" class="theme-toggle" title="Toggle Theme">☀️</button>
+        </div>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobile-menu">
+        <a onclick="goto('home'); toggleMenu()">Home</a>
+        <a onclick="goto('about'); toggleMenu()">About</a>
+        <a onclick="goto('contact'); toggleMenu()">Contact</a>
+        <a onclick="goto('write'); toggleMenu()">✍️ Write</a>
+    </div>
+
+    <!-- ========== HOME PAGE ========== -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-tag">✦ Design × Engineering</div>
+            <h1>Where <em>design craft</em><br>meets tech.</h1>
+            <p class="hero-sub">Software Engineering student & Graphic Designer based in Pakistan — writing about design thinking, tools & creative process.</p>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="goto('write')">Start Writing →</button>
+                <button class="btn-ghost" onclick="scrollToFeed()">Read Posts ↓</button>
+            </div>
+        </section>
+
+        <div class="feed-header" id="feed-anchor">
+            <h2 class="section-title">Community Feed</h2>
+            <div class="feed-controls">
+                <button class="filter-btn active" onclick="filterPosts('all', this)">All</button>
+                <button class="filter-btn" onclick="filterPosts('design', this)">Design</button>
+                <button class="filter-btn" onclick="filterPosts('community', this)">Community</button>
+            </div>
+        </div>
+
+        <div id="community-feed" class="grid"></div>
+
+        <div id="empty-state" class="empty-state" style="display:none;">
+            <div class="empty-icon">✦</div>
+            <p>No posts yet. Be the first to write!</p>
+            <button class="btn-primary" onclick="goto('write')">Write a Post →</button>
+        </div>
+    </div>
+
+    <!-- ========== WRITE PAGE ========== -->
+    <div id="write" class="page">
+        <section class="hero" style="padding-bottom:20px;">
+            <div class="hero-tag">✦ Share Your Story</div>
+            <h1>Write a <em>Post</em></h1>
+        </section>
+        <div class="form-container">
+            <div class="form-group">
+                <label class="form-label">Post Title</label>
+                <input type="text" id="blog-title" class="input-field" placeholder="e.g. Why I Switched to Figma...">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Category</label>
+                <select id="blog-category" class="input-field">
+                    <option value="design">🎨 Graphic Design</option>
+                    <option value="community">💬 Community</option>
+                    <option value="engineering">⚙️ Engineering</option>
+                    <option value="tools">🛠️ Tools & Resources</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Your Story</label>
+                <textarea id="blog-content" class="input-field" rows="8" placeholder="Write your thoughts, tips, or experience..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Author Name</label>
+                <input type="text" id="blog-author" class="input-field" placeholder="Your name (or leave blank for Anonymous)">
+            </div>
+            <button class="btn-primary full-width" onclick="publishBlog()">Publish Post 🚀</button>
+        </div>
+    </div>
+
+    <!-- ========== ABOUT PAGE ========== -->
+    <div id="about" class="page">
+        <section class="hero">
+            <div class="hero-tag">✦ The Person Behind</div>
+            <h1>About <em>Zainab</em></h1>
+        </section>
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="about-icon">🎓</div>
+                <h3>Education</h3>
+                <p>Software Engineering student at COMSATS University, Vehari — blending logic with creativity every single day.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">🎨</div>
+                <h3>Design</h3>
+                <p>Graphic designer passionate about visual communication, brand identity, and making things beautiful AND functional.</p>
+            </div>
+            <div class="about-card">
+                <div class="about-icon">✦</div>
+                <h3>ArtifexTech</h3>
+                <p>This blog is my corner of the internet — a space to explore the intersection of design craft and software engineering.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CONTACT PAGE ========== -->
+    <div id="contact" class="page">
+        <section class="hero">
+            <div class="hero-tag">✦ Let's Connect</div>
+            <h1>Say <em>Hello</em></h1>
+        </section>
+        <div class="contact-container">
+            <div class="contact-card">
+                <span class="contact-icon">📧</span>
+                <div>
+                    <strong>Email</strong>
+                    <p>zqazi@student.comsats.edu.pk</p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <span class="contact-icon">📍</span>
+                <div>
+                    <strong>Location</strong>
+                    <p>Vehari, Punjab, Pakistan</p>
+                </div>
+            </div>
+            <div class="contact-card">
+                <span class="contact-icon">✦</span>
+                <div>
+                    <strong>Open To</strong>
+                    <p>Collaborations, design gigs & creative projects</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== COMMENT MODAL ========== -->
+    <div id="comment-modal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>💬 Comments</h3>
+                <button onclick="closeCommentModal()" class="modal-close">✕</button>
+            </div>
+            <div id="modal-comments-list" class="comments-list"></div>
+            <div class="modal-input-row">
+                <input type="text" id="modal-comment-input" class="input-field" placeholder="Write a comment...">
+                <button class="btn-primary" onclick="submitModalComment()">Post</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ♥ by <strong>Zainab Qazi</strong> · ArtifexTech © 2025</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
